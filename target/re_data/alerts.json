@@ -1,1 +1,0 @@
-[{"type": "schema_change", "model": "dbt.public_new.customer_a_view", "message": "column created_at of type timestamp without time zone was removed.", "value": "", "time_window_end": "2022-02-21 15:27:18"}]
