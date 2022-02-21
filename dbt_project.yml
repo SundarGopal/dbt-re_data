@@ -1,0 +1,80 @@
+
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'Demo_dbt'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'postgres1'
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths:
+  - "models"
+  - "sources"
+
+
+target-path: "target"
+clean-targets: ["target", "dbt_modules"]
+
+# on-run-end:
+#   - "{{ re_data.save_test_history(results) }}"
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# In this example config, we tell dbt to build all models in the example/ directory
+# as tables. These settings can be overridden in the individual model files
+# using the `{{ config(...) }}` macro.
+models:
+  re_data:
+    enabled: true
+  Demo_dbt:
+    # Config indicated by + and applies to all files under models/example/
+    # example:
+    #   +materialized: view
+    customer:
+      +re_data_monitored: true
+      # +re_data_time_filter: joined_at
+      +materialized: view
+    customer1:
+      +re_data_monitored: true
+      # +re_data_time_filter: joined_at
+      +materialized: view
+
+
+sources:
+  public_new:
+    customer_branch_a:
+      +re_data_monitored: true
+      # +re_data_time_filter: joined_at
+      +re_data_columns:
+        - first_name
+        - last_name
+        - location
+    
+
+vars:
+  re_data:alerting_z_score: 2
+  re_data:metrics_base:
+    table:
+      - row_count
+      - freshness
+
+    column:
+      numeric:
+        - min
+        - max
+        - avg
+        - stddev
+        - nulls_percent
+
+      text:
+        - min_length
+        - max_length
+        - avg_length
+        - missing_percent

@@ -1,0 +1,109 @@
+version: 2
+
+sources:
+  - name: '{{ target.schema}}'
+    tables:
+      - name: customer_branch_a
+        columns:
+          - name: customer_id
+
+
+          - name: first_name
+            tests:
+              - not_null
+
+          - name: last_name
+            tests:
+              - not_null
+
+          - name: location
+            tests:
+              - not_null
+
+          - name: pincode
+          - name: contact_number
+          - name: created_at
+
+  - name: '{{ target.schema}}'
+    tables:
+      - name: customer_branch_b
+        columns:
+          - name: customer_id
+
+
+          - name: first_name
+            tests:
+              - not_null
+
+          - name: last_name
+            tests:
+              - not_null
+
+          - name: location
+            tests:
+              - not_null
+
+          - name: pincode
+          - name: contact_number
+
+  - name: '{{ target.schema}}'
+    tables:
+      - name: order_branch_a
+        columns:
+          - name: order_id
+
+
+          - name: order_date
+            tests:
+              - not_null
+
+
+          - name: customer_id
+            tests:
+              - not_null
+
+          - name: product_id
+          - name: quantity
+
+  - name: '{{ target.schema}}'
+    tables:
+      - name: order_branch_b
+        columns:
+          - name: order_id
+
+
+          - name: order_date
+            tests:
+              - not_null
+
+
+          - name: customer_id
+            tests:
+              - not_null
+
+          - name: product_id
+          - name: quantity
+
+  - name: '{{ target.schema}}'
+    tables:
+      - name: products_branch_a
+        columns:
+          - name: product_id
+
+
+          - name: product_name
+            tests:
+              - not_null
+
+
+          - name: quantity_per_unit
+            tests:
+              - not_null
+
+          - name: unit
+          - name: unit_price
+
+
+
+
+
