@@ -16,6 +16,8 @@ model-paths:
   - "models"
   - "sources"
 
+#......
+
 
 target-path: "target"
 clean-targets: ["target", "dbt_modules"]
